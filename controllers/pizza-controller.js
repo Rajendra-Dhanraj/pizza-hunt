@@ -1,5 +1,5 @@
 const { Pizza } = require("../models");
-const { db } = require("../models/Pizza");
+
 
 const pizzaController = {
   // get all pizzas
