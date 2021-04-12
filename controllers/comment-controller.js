@@ -26,7 +26,7 @@ const commentController = {
     Comment.findOneAndUpdate(
       { _id: params.commentId },
       { $push: { replies: body } },
-      { new: true }
+      { new: true, runValidators: true } // ensures validation from model is used on request
     )
       .then((dbPizzaData) => {
         if (!dbPizzaData) {

@@ -1,11 +1,11 @@
 const { Pizza } = require("../models");
 
-
 const pizzaController = {
   // get all pizzas
   getAllPizza(req, res) {
     Pizza.find({})
-      .populate({ // adds comments
+      .populate({
+        // adds comments
         path: "comments",
         select: "-__v", // "-__v" means do not return __v field.
       })
@@ -48,7 +48,10 @@ const pizzaController = {
 
   // update pizza by id
   updatePizza({ params, body }, res) {
-    Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true }) //return new version of the document
+    Pizza.findOneAndUpdate({ _id: params.id }, body, {
+      new: true,
+      runValidators: true, //enforeces model validation such as "required"
+    }) //return new version of the document
       .then((dbPizzaData) => {
         if (!dbPizzaData) {
           res.status(404).json({ message: "No pizza found with this id!" });
