@@ -63,6 +63,7 @@ const handlePizzaSubmit = (event) => {
     })
     .catch((err) => {
       console.log(err);
+      saveRecord(formData); // if not able to post (no internet), will save to indexDB!
     });
 };
 
